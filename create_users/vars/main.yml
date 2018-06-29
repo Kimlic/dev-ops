@@ -1,0 +1,5 @@
+---
+# vars file for add_users
+   users: 
+      - name: lesha
+        sudo: ALL=(ALL) ALL

@@ -1,0 +1,124 @@
+---
+# tasks file for quorum setup
+
+- name: Install packages
+  apt: 
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+  with_items:
+        - build-essential=12.1ubuntu2
+        - git=1:2.7.4-0ubuntu1.4
+        - libdb-dev=1:5.3.21~exp1ubuntu2
+        - libleveldb-dev=1.18-5
+        - libsodium-dev=1.0.8-5
+        - zlib1g-dev=1:1.2.8.dfsg-2ubuntu4.1
+        - libtinfo-dev=6.0+20160213-1ubuntu1
+        - sysvbanner=1.0.15
+        - wget=1.17.1-1ubuntu1.4
+        - wrk=4.0.1-2
+        - dnsutils=1:9.10.3.dfsg.P4-8ubuntu1.10
+
+- name: Download constallation
+  get_url:
+    url: https://github.com/jpmorganchase/constellation/releases/download/v0.3.2/constellation-0.3.2-ubuntu1604.tar.xz
+    dest: /home/lesha/constellation-0.3.2-ubuntu1604.tar.xz
+    owner: lesha
+    group: lesha
+    mode: 0755
+
+#- name: Unpack constallation
+#  unarchive:
+#    src: /home/lesha/constellation-0.3.2-ubuntu1604.tar.xz
+#    dest: /usr/local/bin
+
+- name: Unpack constallation
+  shell: tar xvf constellation-0.3.2-ubuntu1604.tar.xz && mv constellation-0.3.2-ubuntu1604 ubuntu1604 && cp ubuntu1604/constellation-node /usr/local/bin
+
+#- name: Copy constallation to /usr/local/bin
+#  copy:
+#    src: /ubuntu1604/constellation-node
+##    dest: /usr/local/bin/
+#    owner: lesha
+#    group: lesha
+#    mode: 0755 
+
+- name: Set permission to constallation
+  file:
+    path: /usr/local/bin/constellation-node
+    owner: lesha
+    group: lesha
+    mode: 0755
+
+- name: Clean folder after files downloads
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /home/lesha/constellation-0.3.2-ubuntu1604.tar.xz
+    - /home/lesha/ubuntu1604
+
+- name: Download GO
+  get_url:
+    url: https://storage.googleapis.com/golang/{{ GOREL }}
+    dest: /home/lesha/{{ GOREL }}
+    owner: lesha
+    group: lesha
+    mode: 0755
+
+## Uncoment after playbook complete    
+- name: Unpack go
+  shell: tar xvf {{GOREL}} && mv go /usr/local/go
+
+- name: set Go to PATH
+  shell: export PATH=$PATH:/usr/local/go/bin
+
+- name: set Go PATH to lesha .profile
+  lineinfile:
+    path: /home/lesha/.profile
+    regexp: '^#export GOPATH '
+    line: export PATH=$PATH:/usr/local/go/bin
+
+- name: set Go PATH to root .profile
+  lineinfile:
+    path: /root/.profile
+    regexp: '^#export GOPATH '
+    line: export PATH=$PATH:/usr/local/go/bin
+
+- name: Clean folder after go downloads
+  file:
+    path: /home/lesha/{{GOREL}} 
+    state: absent
+
+- name: Copy quorum files
+  copy:
+    src: "{{ item }}"
+    dest: /usr/local/bin
+    owner: lesha
+    group: lesha
+    mode: u=rwx,g=rwx,o=rx
+  with_items:
+    - geth
+    - bootnode
+
+- name: add ethereum ppa
+  apt_repository:
+    repo: ppa:ethereum/ethereum
+
+- name: install packages for ethereum
+  apt:      
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - software-properties-common=0.96.20.7 
+    - libdb-dev=1:5.3.21~exp1ubuntu2
+    - libleveldb-dev=1.18-5
+    - libsodium-dev=1.0.8-5
+    - zlib1g-dev=1:1.2.8.dfsg-2ubuntu4.1
+    - libtinfo-dev=6.0+20160213-1ubuntu1
+    - netbase=5.3
+    - ca-certificates=20170717~16.04.1 
+    - curl=7.47.0-1ubuntu2.8 
+    - solc=1:0.4.24-0ubuntu1~xenial
+    - dnsutils=1:9.10.3.dfsg.P4-8ubuntu1.10

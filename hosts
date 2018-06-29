@@ -1,0 +1,8 @@
+[azure]
+localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
+
+[instances]
+137.117.146.17 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[test-instance]
+testvm.oleksii.pp.ua ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"

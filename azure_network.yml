@@ -1,0 +1,42 @@
+---
+- name: Create azure network
+  hosts: azure
+  connection: local
+  tasks:
+
+  - name: Create a resource group if missing
+    azure_rm_resourcegroup:
+      name: "my-network"
+      location: "westeurope"
+      state: present
+
+  - name: Create virtual network
+    azure_rm_virtualnetwork:
+      resource_group: "my-network"
+      name: myVnet
+      address_prefixes: "10.0.0.0/16"
+  
+  - name: Add subnet
+    azure_rm_subnet:
+      resource_group: "my-network"
+      name: mySubnet
+      address_prefix: "10.0.1.0/24"
+      virtual_network: myVnet
+
+  - name: Create Network Security Group that allows SSH
+    azure_rm_securitygroup:
+      resource_group: "my-network"
+      name: my-security-group
+      rules:
+        - name: SSH
+          protocol: Tcp
+          destination_port_range: 22
+          access: Allow
+          priority: 1001
+          direction: Inbound
+        - name: 8080 
+          protocol: Tcp
+          destination_port_range: 8080
+          access: Allow
+          priority: 1002
+          direction: Inbound

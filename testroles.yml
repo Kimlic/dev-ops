@@ -1,0 +1,9 @@
+---
+- name: Test roles
+  hosts: test-instance
+
+  roles:
+    #- base_setup
+    #- create_users
+    #- docker
+    - quorum 
