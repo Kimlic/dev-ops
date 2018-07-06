@@ -1,3 +1,9 @@
 ---
 # tasks file for quorum configure 
 - name: download necessary configs  
+  git:
+    repo: https://lesha-pharos@bitbucket.org/pharosproduction/quorum-single-node-config.git
+    dest: /home/ops/
+    owner: lesha
+    group: lesha
+    mode: 0777
