@@ -23,3 +23,4 @@
         - bzip2
         - net-tools
         - sudo
+        - ntp

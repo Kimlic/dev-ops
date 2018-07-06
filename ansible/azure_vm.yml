@@ -7,9 +7,9 @@
   
   - name: Add virtual mashine
     azure_rm_virtualmachine:
-      resource_group: "my-network"
+      resource_group: "swarm-network"
       open_ports: 22, 9000, 21000, 22000, 50400
-      name: testVM
+      name: swarmVM
       vm_size: Standard_B1s
       admin_username: lesha
       ssh_password_enabled: false
@@ -28,8 +28,8 @@
       resource_group: '{{ "my-network" }}'
     register: azure_ip
 
-  - debug: 
-    msg: "IP is {{ azure_ip.azure_publicipaddresses }}"
+ # - debug: 
+ #   msg: "IP is {{ azure_ip.azure_publicipaddresses }}"
 
   #- name: Add new instance to host group
   #  add_host:

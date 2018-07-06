@@ -3,3 +3,5 @@
    users: 
       - name: lesha
         sudo: ALL=(ALL) ALL
+      - name: ops
+        sudo: ALL=(ALL) ALL
