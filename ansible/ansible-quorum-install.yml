@@ -7,4 +7,4 @@
     - create_users
     #- docker
     - quorum-setup
-    #- quorum-configure 
+    - quorum-configure 
