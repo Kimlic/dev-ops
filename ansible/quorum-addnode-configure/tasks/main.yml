@@ -2,6 +2,6 @@
 # tasks file for quorum configure 
 - name: download necessary configs  
   git:
-    repo: git clone https://lesha-pharos@bitbucket.org/pharosproduction/quorum-add-node.git
+    repo: https://lesha-pharos@bitbucket.org/pharosproduction/quorum-add-node.git
     dest: /home/ops/configs
     
