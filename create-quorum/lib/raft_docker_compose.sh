@@ -135,7 +135,7 @@ function createNode() {
 
     mv ${pName}/datadir/keystore/* ${pName}/${nodeName}/qdata/keystore/${nodeName}key
    
-    cat accountAddress.txt > ${pName}/genesis.json
+    #cat accountAddress.txt > ${pName}/genesis.json
     cat lib/genesis.json >> ${pName}/genesis.json
 
     copyRaftStartTemplate 

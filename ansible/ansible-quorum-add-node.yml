@@ -1,8 +1,10 @@
 ---
-- name: Quorum install
+- name: Quorum add node
   hosts: instances
 
   roles:
     - base_setup
     - quorum_create_users
     - quorum-setup
+    - quorum-addnode-configure
+    
