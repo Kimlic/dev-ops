@@ -7,5 +7,7 @@ localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env pyth
 [instances]
 40.115.100.250 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
-[test-instance]
-testvm.oleksii.pp.ua ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+[quorum-vm]
+104.41.218.50 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+94.245.91.198 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.115.100.250 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"

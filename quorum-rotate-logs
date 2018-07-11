@@ -1,0 +1,13 @@
+
+/home/ops/configs/master/master1/qdata/logs/*.log {
+weekly 
+rotate 5
+compress
+delaycompress
+notifempty
+create 644 ops ops
+sharedscripts
+postrotate
+/home/ops/configs/master/master1/restart_node.sh > /dev/null
+endscript
+}
