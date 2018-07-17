@@ -1,0 +1,9 @@
+---
+- name: Quorum install
+  hosts: instances
+
+  roles:
+    - base_setup
+    - create_users
+    - rabbit-mq 
+   

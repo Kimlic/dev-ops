@@ -1,0 +1,93 @@
+---
+# tasks file for rabbitmq setup
+
+- name: Install nessesary package
+  apt: 
+      name: apt-transport-https
+      state: present
+      update_cache: yes
+
+- name: Download esl-erlang package
+  get_url:
+    url: https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_21.0-1~debian~stretch_amd64.deb
+    dest: /home/lesha/esl-erlang_21.0-1~debian~stretch_amd64.deb
+    owner: lesha
+    group: lesha
+    mode: 0755
+
+- name: Install esl-erlang
+  apt:
+    deb: /home/lesha/esl-erlang_21.0-1~debian~stretch_amd64.deb
+
+- name: Download erlang solutions
+  get_url:
+    url: https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+    dest: /home/lesha/erlang-solutions_1.0_all.deb
+    owner: lesha
+    group: lesha
+    mode: 0755
+
+- name: Install erlang repository
+  apt:
+    deb: /home/lesha/erlang-solutions_1.0_all.deb
+
+- name: Add an Apt signing key
+  apt_key:
+    url: https://packages.erlang-solutions.com/debian/erlang_solutions.asc
+    state: present
+
+# - name: install erlang
+#   apt: 
+#     name: erlang
+#     state: present
+#     update_cache: yes
+
+- name: fix unmet dependencies
+  shell: apt-get -f install
+
+- name: Add rabbit repo
+  shell: echo "deb https://dl.bintray.com/rabbitmq/debian stretch main" | tee /etc/apt/sources.list.d/bintray.rabbitmq.list
+
+- name: add trusted key
+  shell: wget -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | apt-key add -
+
+- name: install rabbitmq
+  apt: 
+    name: rabbitmq-server
+    state: present
+    update_cache: yes
+
+- name: enable rabbitmq plugins
+  rabbitmq_plugin:
+    names: rabbitmq_management
+    state: enabled
+  notify:
+    - restart rabbitmq
+
+- name: add rabbitmq users lesha
+  rabbitmq_user:
+    user: lesha
+    password: XxPw4_uF7
+    vhost: /
+    tags: administrator
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+
+- name: add rabbitmq users dmytro
+  rabbitmq_user:
+    user: dmytro
+    password: cPzSKQqShvhq57i
+    vhost: /
+    tags: administrator
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+  
+
+- name: remove default guest user
+  rabbitmq_user: 
+    user: guest
+    state: absent
