@@ -1,0 +1,33 @@
+# tasks file for rabbitmq-exporter setup
+
+- name: create user for rabbitmq-exporter
+  user:
+    name: node_exporter
+    shell: /bin/false
+    create_home: no
+
+- name: Copy rabbitmq-exporter file
+  copy:
+    src: rabbitmq_exporter
+    dest: /usr/local/bin
+    owner: node_exporter
+    group: node_exporter
+    mode: u=rwx,g=rx,o=x
+
+- name: Create rabbitmq-exporter service
+  copy:
+    src: rabbitmq-exporter.service
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: enable and start rabbitmq-exporter
+  systemd:
+    name: rabbitmq-exporter
+    enabled: yes
+    state: started

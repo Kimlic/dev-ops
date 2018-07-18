@@ -1,11 +1,11 @@
-# tasks file for node_explorer setup
-- name: create user for node_explorer
+# tasks file for node_exporter setup
+- name: create user for node_exporter
   user:
     name: node_exporter
     shell: /bin/false
     create_home: no
 
-- name: Copy node_explorer file
+- name: Copy node_exporter file
   copy:
     src: node_exporter
     dest: /usr/local/bin
