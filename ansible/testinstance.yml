@@ -3,8 +3,8 @@
   hosts: instances
 
   roles:
-    # - base_setup
-    # - create_users
+    - base_setup
+    - create_users
     # - rabbit-mq 
     - node_exporter
-   
+    # - rabbitmq_exporter
