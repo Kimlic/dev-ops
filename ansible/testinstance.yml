@@ -1,5 +1,5 @@
 ---
-- name: Quorum install
+- name: install
   hosts: instances
 
   roles:
