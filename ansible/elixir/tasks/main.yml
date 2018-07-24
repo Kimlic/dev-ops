@@ -1,0 +1,90 @@
+---
+# tasks file for rabbitmq setup
+
+- name: Install nessesary package
+  apt: 
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+  with_items:
+    - apt-transport-https
+    - postgresql-client
+    - inotify-tools
+    - make
+    - build-essential
+
+- name: Download erlang solutions
+  get_url:
+    url: https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+    dest: /home/lesha/erlang-solutions_1.0_all.deb
+    owner: lesha
+    group: lesha
+    mode: 0755
+
+- name: Install erlang repository
+  apt:
+    deb: /home/lesha/erlang-solutions_1.0_all.deb
+   
+
+- name: Install erlang and elixir
+  apt: 
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - esl-erlang
+    - elixir
+    
+- name: copy ops keys
+  copy:
+    src: ops.id_rsa
+    dest: /home/ops/.ssh/ops.id_rsa
+    owner: ops
+    group: ops
+    mode: 0600
+
+- name: clone rp_server repo
+  git:
+     repo: 'git@bitbucket.org:pharosproduction/rp_server.git'
+     dest: /home/ops/rp_server
+     key_file: /home/ops/.ssh/ops.id_rsa
+     force: yes
+     accept_hostkey: yes
+
+- name: install hex
+  shell: mix local.hex --force
+
+- name: install rebar
+  shell: mix local.rebar --force
+
+- name: compile project
+  shell: cd /home/ops/rp_server/ && MIX_ENV=prod mix do deps.get, deps.compile --force
+
+- name: mix release
+  shell: cd /home/ops/rp_server/ &&  MIX_ENV=prod mix release --verbose --env=prod
+
+- name: copy rp_server conf file
+  copy:
+    src: rp_server.conf
+    dest: /home/ops/rp_server/_build/prod/rel/rp_server/releases/1.0.0/rp_server.conf
+    owner: ops
+    group: ops
+    mode: 0755
+
+- name: db migration 
+  shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server migrate
+
+- name: seeds
+  shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server seeds
+
+- name: start rp_server daemon
+  shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server start
+
+- name: change permission on rp_server folder
+  file:
+    path: /home/ops/rp_server
+    owner: ops
+    group: ops
+    mode: 0755
+    recurse: yes 
+
