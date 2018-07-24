@@ -1,5 +1,5 @@
 ---
-# tasks file for rabbitmq setup
+# tasks file for elixir backend setup
 
 - name: Install nessesary package
   apt: 
