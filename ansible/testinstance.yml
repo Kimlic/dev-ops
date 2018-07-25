@@ -9,4 +9,4 @@
     - node_exporter
     # - rabbitmq_exporter
     # - elixir
-    - nodejs-nginx
+    # - nodejs-nginx
