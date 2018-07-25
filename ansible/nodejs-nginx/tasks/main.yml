@@ -1,0 +1,85 @@
+---
+# tasks file for nginx and nodejs setup
+- name: Install nessesary package
+  apt: 
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+  with_items:
+    - apt-transport-https
+    - build-essential
+    - gcc
+    - g++
+    - make
+
+- name: install nodejs repo
+  shell: curl -sL https://deb.nodesource.com/setup_10.x | bash -
+
+- name: install nodejs
+  apt:
+    name: nodejs
+    state: present
+    update_cache: yes
+
+- name: get yart repo
+  shell:  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+- name: install yarn
+  apt:
+    name: yarn
+    state: present
+    update_cache: yes
+
+- name: install reactapp 
+  # npm:
+  #   name: create-react-app
+  #   path: /home/ops/
+  shell: npm install -g create-react-app
+
+
+# - name: create react-app
+#   shell: cd /home/ops/ && create-react-app my-app
+
+# add supervisor and react conf for supervisor
+
+- name: add nginx repo
+  apt_repository:
+    repo: deb http://nginx.org/packages/mainline/debian/ stretch nginx
+    state: present  
+
+- name: nginx download singing key
+  get_url:
+    url: http://nginx.org/keys/nginx_signing.key
+    dest: /home/ops/nginx_signing.key
+    mode: 0755
+  
+- name: add nginx key
+  shell: apt-key add nginx_signing.key
+
+- name: install nginx
+  apt: 
+      name: nginx
+      state: present
+      update_cache: yes
+
+- name: add nginx configs
+  copy:
+    src: nginx-proxy
+    dest: /etc/nginx/conf.d/default.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart nginx
+
+- name: Ensure NGINX is running and and enabled to start automatically on reboots
+  systemd:
+    name: nginx
+    enabled: yes
+    state: started
+    
+
+
+
+
+
