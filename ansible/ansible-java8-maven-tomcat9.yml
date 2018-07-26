@@ -1,0 +1,11 @@
+---
+- name: Quorum add node
+  hosts: instances
+
+  roles:
+    - base_setup
+    - create_users
+    - java8
+    - maven
+    - tomcat9
+    
