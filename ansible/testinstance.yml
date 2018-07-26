@@ -9,4 +9,7 @@
     # - node_exporter
     # - rabbitmq_exporter
     # - elixir
-    - nodejs-nginx
+    #- nodejs-nginx
+    # - java8
+    # - maven
+    - tomcat9
