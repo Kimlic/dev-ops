@@ -1,5 +1,5 @@
 ---
-- name: Quorum add node
+- name: Java8, maven, tomcat9
   hosts: instances
 
   roles:
