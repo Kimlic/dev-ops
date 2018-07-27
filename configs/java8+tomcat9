@@ -1,0 +1,311 @@
+https://tecadmin.net/install-tomcat-9-on-ubuntu/
+https://tecadmin.net/install-java-8-on-debian/
+https://github.com/docker-library/buildpack-deps/blob/b0fc01aa5e3aed6820d8fed6f3301e0542fbeb36/stretch/curl/Dockerfile
+https://github.com/docker-library/openjdk/blob/a5cc95a14480e9b30c674aa72257f6e4cf032b8d/8/jre/Dockerfile
+https://github.com/docker-library/tomcat/blob/master/9.0/jre8/Dockerfile
+https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7
+
+https://github.com/eBay/UAF/wiki/BuildingAndRunningUAFServerUsingMaven(CLIonly)
+
+1  apt-get install software-properties-common dirmngr
+    2  add-apt-repository "deb http://ppa.launchpad.net/webupd8team/java/ubuntu yakkety main"
+    3  apt update
+    4  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C2518248EEA14886
+    5  apt update
+    6  apt-get install oracle-java8-installer
+    7  vim /etc/apt/sources.list.d/java-8-debian.lis
+    8  vim /etc/apt/sources.list.d/java-8-debian.list
+    9  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
+   10  apt update
+   11  apt-get install oracle-java8-installer
+   12  which java
+   13  java -version
+   14  /usr/libexec/java_home -V
+   15  echo $JAVA_HOME
+   16  apt-get update && apt-get install -y --no-install-recommends     ca-certificates     curl     netbase     wget
+   17  set -ex;   if ! command -v gpg > /dev/null; then     apt-get update;     apt-get install -y --no-install-recommends       gnupg       dirmngr     ;     rm -rf /var/lib/apt/lists/*;   fi
+   18  apt-get update && apt-get install -y --no-install-recommends     bzip2     unzip     xz-utils
+   19  LANG=C.UTF-8
+   20  dpkg --print-architecture
+   21  JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+   22  /usr/libexec/java_home -V
+   23  apt-get install software-properties-common dirmngr
+   24  add-apt-repository "deb http://ppa.launchpad.net/webupd8team/java/ubuntu yakkety main"
+   25  apt update
+   26  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C2518248EEA14886
+   27  apt update
+   28  apt-get install oracle-java8-installer
+   29  vim /etc/apt/sources.list.d/java-8-debian.lis
+   30  vim /etc/apt/sources.list.d/java-8-debian.list
+   31  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
+   32  apt update
+   33  apt-get install oracle-java8-installer
+   34  which java
+   35  java -version
+   36  /usr/libexec/java_home -V
+   37  echo $JAVA_HOME
+   38  apt-get update && apt-get install -y --no-install-recommends     ca-certificates     curl     netbase     wget
+   39  set -ex;   if ! command -v gpg > /dev/null; then     apt-get update;     apt-get install -y --no-install-recommends       gnupg       dirmngr     ;     rm -rf /var/lib/apt/lists/*;   fi
+   40  apt-get update && apt-get install -y --no-install-recommends     bzip2     unzip     xz-utils
+   41  LANG=C.UTF-8
+   42  dpkg --print-architecture
+   43  JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+   44  /usr/libexec/java_home -V
+   45  update-alternatives --get-selections | awk -v home="$(readlink -f "$JAVA_HOME")" 'index($3, home) == 1 { $2 = "manual"; print | "update-alternatives --set-selections" }'
+   46  update-alternatives --query java | grep -q 'Status: manual'
+   47  /var/lib/dpkg/info/ca-certificates-java.postinst configure
+   48  git --version
+   49  apt-get install maven
+   50  mvn -version
+   51  mkdir ~/opt
+   52  cd ~/opt
+   53  CATALINA_HOME=/usr/local/tomcat
+   54  PATH= $CATALINA_HOME/bin:$PATH
+   55  PATH=$CATALINA_HOME/bin:$PATH
+   56  mkdir -p "$CATALINA_HOME"
+   57  cd $CATALINA_HOME
+   58  wget http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.10/bin/apache-tomcat-9.0.10.tar.gz
+   59  tar xzf apache-tomcat-9.0.10.tar.gz
+   60  mv apache-tomcat-9.0.10 apache-tomcat9
+   61  echo "export CATALINA_HOME="/usr/local/apache-tomcat9"" >> ~/.bashrc
+   62  echo "export JAVA_HOME="/usr/lib/jvm/java-8-oracle"" >> ~/.bashrc
+   63  echo "export JRE_HOME="/usr/lib/jvm/java-8-oracle/jre"" >> ~/.bashrc
+   64  source ~/.bashrc
+   65  ls
+   66  cd apache-tomcat9/
+   67  ls
+   68  cd conf/
+   69  ls
+   70  vim tomcat-users.xml
+   71  cd /usr/local/apache-tomcat9
+   72  cd ..
+   73  ls
+   74  cd bin/
+   75  ls
+   76  ./startup.sh
+   77  ./catalina.sh
+   78  cd ..
+   79  ./bin/startup.sh
+   80  pwd
+   81  ls
+   82  cd ..
+   83  ls
+   84  mv tomcat/ apache-tomcat9/
+   85  ls
+   86  cd apache-tomcat9/
+   87  ls
+   88  cd apache-tomcat9/
+   89  ls
+   90  ./bin/startup.sh
+   91  cd ..
+   92  ls
+   93  rsync -aVh ./apache-tomcat/ ./
+   94  rsync -aHv ./apache-tomcat/ ./
+   95  ls
+   96  cd apache-tomcat9/
+   97  ;s
+   98  ls
+   99  rsync -aHv ./ /usr/local/apache-tomcat9
+  100  cd ..
+  101  ls
+  102  rm -rf apache-tomcat
+  103  ls
+  104  rm -rf apache-tomcat9
+  105  ls
+  106  ./bin/startup.sh
+  107  netstat -tunlp
+  108  ls
+  109  cd conf/
+  110  ls
+  111  cd ..
+  112  cd ./webapps/
+  113  ls
+  114  cd host-manager/
+  115  ls
+  116  cd META-INF/
+  117  ls
+  118  vim context.xml
+  119  free -h
+  120  vim context.xml
+  121  cd ../..
+  122  cd ..
+  123  ;s
+  124  ls
+  125  cd bin/
+  126  ls
+  127  ./shutdown.sh
+  128  ./startup.sh
+  129  cd ..
+  130  ls
+  131  cd conf/
+  132  ls
+  133  cat tomcat-users.x
+  134  curl -u ${admin-gui}:${BEBEduqlqe} http://localhost:8080/host-manager/text/list
+  135  vim tomcat-users.xml
+  136  curl -u ${admin}:${BEBEduqlqe} http://localhost:8080/host-manager/text/list
+  137  cd /usr/local/
+  138  ls
+  139  git clone https://github.com/Kimlic/UAF.git
+  140  ls
+  141  cd UAF/
+  142  ls
+  143  cd fido-uaf-core/
+  144  mvn clean install
+  145  ls
+  146  cd ../UAF/fidouaf
+  147  cd ..
+  148  ls
+  149  cd fidouaf
+  150  mvn clean install
+  151  ls
+  152  cd target/
+  153  ls
+  154  cd ../..
+  155  ls
+  156  cd ..
+  157  ls
+  158  cd apache-tomcat9/
+  159  ls
+  160  ./bin/shutdown.sh
+  161  cp ../UAF/fidouaf/target/fidouaf-0.0.1-SNAPSHOT.war ./webapps/fidouaf.war
+  162  ./bin/startup.sh
+  163  netstat -tunlp
+  164  curl http://localhost:8080/manager/text/list
+  165  ls
+  166  cd conf/
+  167  ls
+  168  vim context.xml
+  169  vim tomcat-users.xml
+  170  $CATALINA_HOME
+  171  ls
+  172  cat server.xml
+  173  cd ..
+  174  ls
+  175  cat RUNNING.txt
+  176  ls
+  177  cd ./webapps/
+  178  ls
+  179  cd manager/
+  180  ls
+  181  cd META-INF/
+  182  ls
+  183  vim context.xml
+  184  cd ../..
+  185  ls
+  186  cd ..
+  187  ls
+  188  ./bin/shutdown.sh
+  189  ./bin/startup.sh
+  190  netstat -tunlp
+  191  ls
+  192  cd logs/
+  193  ls
+  194  tail catalina.out
+  195  ls
+  196  tail manager.2018-07-25.log
+  197  tail catalina.2018-07-25.log
+  198  curl -s http://localhost:8080/fidouaf/v1/public/regRequest/TestUserNamePathParam | python -m json.too
+  199  curl -s http://localhost:8080/fidouaf/v1/public/regRequest/TestUserNamePathParam | python -m json.tool
+  200  cd ..
+  201  ls
+  202  cd conf/
+  203  ls
+  204  cd ..
+  205  cd conf/
+  206  ls
+  207  vim tomcat-users.xml
+  208  cd ../
+  209  ls
+  210  cd webapps/
+  211  ls
+  212  cd manager/META-INF/
+  213  ls
+  214  vim context.xml
+  215  cd ../..
+  216  ;s
+  217  ls
+  218  cd host-manager/META-INF/
+  219  vim context.xml
+  220  cd ../
+  221  cd ..
+  222  ls
+  223  ./bin/shutdown.sh
+  224  ./bin/startup.sh
+  225  ls
+  226  ls -la
+  227  cat /etc/passwd | grep tom
+  228  groupadd tomcat
+  229  useradd -M -s /bin/nologin -g tomcat -d /opt/tomcat tomcat
+  230  cd ..
+  231  ls
+  232  netstat -tunlp
+  233  ls
+  234  scp -R ./apache-tomcat9/ /opt/t
+  235  ls
+  236  cd opt/
+  237  ls
+  238  scp -R /usr/
+  239  LANG=C.UTF-8
+  240  rsync -aVh /usr/local/apache-tomcat9/ /opt/tomcat
+  241  rsync -aHv /usr/local/apache-tomcat9/ /opt/tomcat
+  242  ls
+  243  ls
+  244  pwd
+  245  cd /opt/
+  246  ls
+  247  cd tomcat/
+  248  ;s
+  249  ls
+  250  rsync -aHv /usr/local/UAF/ /opt/UAF
+  251  killall java
+  252  netstat -tunlp
+  253  chgrp -R tomcat /opt/tomcat
+  254  ls
+  255  chown -R tomcat webapps/ work/ temp/ logs/
+  256  ls
+  257  ls -la
+  258  echo $JAVA_HOME
+  259  cd /opt/tom
+  260  cd /opt/tomcat/
+  261  ls
+  262  ./bin/startup.sh
+  263  vim /etc/systemd/system/tomcat.service
+  264  systemctl daemon-reload
+  265  systemctl start tomcat
+  266  systemctl status tomcat
+  267  systemctl stop tomcat
+  268  tetstat -tunlp
+  269  netstat -tunlp
+  270  killall java
+  271  systemctl start tomcat
+  272  systemctl status tomcat
+  273  tetstat -tunlp
+  274  netstat -tunlp
+  275  cd ..
+  276  ls
+  277  chown -R tomcat:tomcat /opt/tomcat/
+  278  systemctl start tomcat
+  279  systemctl status tomcat
+  280  netstat -tunlp
+  281  systemctl sop tomcat
+  282  systemctl stop tomcat
+  283  netstat -tunlp
+  284  systemctl start tomcat
+  285  netstat -tunlp
+  286  systemctl enable tomcat
+  287  netstat -tunlp
+  288  ifconfig
+  289  ls
+  290  cd tomcat/
+  291  ls
+  292  cd conf/
+  293  ls
+  294  vim context.xml
+  295  vim tomcat-users.xml
+  296  systemctl restart tomcat
+  297  netstat -tunlp
+  298  systemctl status tomcat
+  299  curl -s http://localhost:8080/fidouaf/v1/public/uaf/facets | python -m json.tool
+  300  curl -s http://localhost:8080/fidouaf/v1/history | python -m json.tool
+  301  curl http://168.63.46.184:8080/fidouaf/v1/public/uaf/facets
+  302  exit
