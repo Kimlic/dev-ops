@@ -86,8 +86,8 @@
     write_priv: .*
     state: present
   
-
-- name: remove default guest user
-  rabbitmq_user: 
-    user: guest
-    state: absent
+# If it's not necessary use rabbitmq_exporter uncoment 
+# - name: remove default guest user
+#   rabbitmq_user: 
+#     user: guest
+#     state: absent
