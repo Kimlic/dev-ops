@@ -122,3 +122,9 @@
     - curl=7.47.0-1ubuntu2.8 
     - solc=1:0.4.24-0ubuntu1~xenial
     - dnsutils=1:9.10.3.dfsg.P4-8ubuntu1.10
+
+- name: install supervisor
+  apt: 
+    name: supervisor
+    state: present
+    update_cache: yes
