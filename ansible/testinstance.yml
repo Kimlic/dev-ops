@@ -4,14 +4,15 @@
 
   roles:
     # - base_setup
-    # - create_users
-    # - syslog
+     - create_users
+     - syslog
+     - docker
     # - rabbit-mq 
-    # - node_exporter
+     - node_exporter
     # - rabbitmq_exporter
     # - elixir
     # - nodejs-nginx
     # - java8
     # - maven
     # - tomcat9
-    - nginx-ssl
+    # - nginx-ssl-elixir-proxy

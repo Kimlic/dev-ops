@@ -28,6 +28,10 @@
         state: present
         update_cache: yes
   
-    - name: add permission
+    - name: add permission for user lesha
       shell: "usermod -a -G docker lesha"
+      become: yes
+
+    - name: add permission for user ops
+      shell: "usermod -a -G docker ops"
       become: yes
