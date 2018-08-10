@@ -5,7 +5,10 @@ ansible_sudo_pass=XxPw4_uF7
 localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
 
 [instances]
-51.140.241.57 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+51.140.241.148 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [quorum-vm]
 104.41.218.50 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[grafana]
+65.52.64.120 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
