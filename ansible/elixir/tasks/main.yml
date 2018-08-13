@@ -43,48 +43,51 @@
     group: ops
     mode: 0600
 
-# - name: clone rp_server repo
-#   git:
-#      repo: 'git@bitbucket.org:pharosproduction/rp_server.git'
-#      dest: /home/ops/rp_server
-#      key_file: /home/ops/.ssh/ops.id_rsa
-#      force: yes
-#      accept_hostkey: yes
+- name: set ENV variables
+  copy:
+     src: .bashrc
+     dest: /home/ops/.bashrc
+     owner: ops
+     group: ops
+     mode: 0644
 
-# - name: install hex
-#   shell: mix local.hex --force
+- name: apply ENV
+  shell: source /home/ops/.bashrc | bash
 
-# - name: install rebar
-#   shell: mix local.rebar --force
+- name: clone rp_server repo
+  git:
+      repo: 'git@bitbucket.org:pharosproduction/rp_server.git'
+      dest: /home/ops/rp_server
+      key_file: /home/ops/.ssh/ops.id_rsa
+      force: yes
+      accept_hostkey: yes
 
-# - name: compile project
-#   shell: cd /home/ops/rp_server/ && MIX_ENV=prod mix do deps.get, deps.compile --force
+- name: install hex
+  shell: mix local.hex --force
 
-# - name: mix release
-#   shell: cd /home/ops/rp_server/ &&  MIX_ENV=prod mix release --verbose --env=prod
+- name: install rebar
+  shell: mix local.rebar --force
 
-# - name: copy rp_server conf file
-#   copy:
-#     src: rp_server.conf
-#     dest: /home/ops/rp_server/_build/prod/rel/rp_server/releases/1.0.0/rp_server.conf
-#     owner: ops
-#     group: ops
-#     mode: 0755
+- name: compile project
+  shell: cd /home/ops/rp_server/ && MIX_ENV=prod mix do deps.get, deps.compile --force
 
-# - name: db migration 
-#   shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server migrate
+- name: mix release
+  shell: cd /home/ops/rp_server/ &&  MIX_ENV=prod mix release --verbose --env=prod
 
-# - name: seeds
-#   shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server seeds
+- name: db migration 
+  shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server migrate
 
-# - name: start rp_server daemon
-#   shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server start
+- name: seeds
+  shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server seeds
 
-# - name: change permission on rp_server folder
-#   file:
-#     path: /home/ops/rp_server
-#     owner: ops
-#     group: ops
-#     mode: 0755
-#     recurse: yes 
+- name: start rp_server daemon
+  shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server start
+
+- name: change permission on rp_server folder
+  file:
+    path: /home/ops/rp_server
+    owner: ops
+    group: ops
+    mode: 0755
+    recurse: yes 
 
