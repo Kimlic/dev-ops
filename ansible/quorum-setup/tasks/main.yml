@@ -21,19 +21,17 @@
 
 - name: Download constallation
   get_url:
-    url: https://github.com/jpmorganchase/constellation/releases/download/v0.3.2/constellation-0.3.2-ubuntu1604.tar.xz
-    dest: /home/lesha/constellation-0.3.2-ubuntu1604.tar.xz
+    #url: https://github.com/jpmorganchase/constellation/releases/download/v0.3.2/constellation-0.3.2-ubuntu1604.tar.xz
+    url: https://github.com/jpmorganchase/constellation/releases/download/v0.3.5-build.1/constellation-0.3.5-ubuntu1604.tar.gz
+    # dest: /home/lesha/constellation-0.3.2-ubuntu1604.tar.xz
+    dest: /home/lesha/constellation-0.3.5-ubuntu1604.tar.xz
     owner: lesha
     group: lesha
     mode: 0755
 
-#- name: Unpack constallation
-#  unarchive:
-#    src: /home/lesha/constellation-0.3.2-ubuntu1604.tar.xz
-#    dest: /usr/local/bin
-
 - name: Unpack constallation
-  shell: tar xvf constellation-0.3.2-ubuntu1604.tar.xz && mv constellation-0.3.2-ubuntu1604 ubuntu1604 && cp ubuntu1604/constellation-node /usr/local/bin
+  #shell: tar xvf constellation-0.3.2-ubuntu1604.tar.xz && mv constellation-0.3.2-ubuntu1604 ubuntu1604 && cp ubuntu1604/constellation-node /usr/local/bin
+  shell: tar xvf constellation-0.3.5-ubuntu1604.tar.xz && cp constellation-node /usr/local/bin
 
 #- name: Copy constallation to /usr/local/bin
 #  copy:
@@ -55,9 +53,10 @@
     path: "{{ item }}"
     state: absent
   with_items:
-    - /home/lesha/constellation-0.3.2-ubuntu1604.tar.xz
-    - /home/lesha/ubuntu1604
-
+  #  - /home/lesha/constellation-0.3.2-ubuntu1604.tar.xz
+   - /home/lesha/constellation-0.3.5-ubuntu1604.tar.xz
+  #  - /home/lesha/ubuntu1604
+   - /home/lesha/constellation-node
 - name: Download GO
   get_url:
     url: https://storage.googleapis.com/golang/{{ GOREL }}
@@ -84,6 +83,9 @@
     path: /root/.profile
     regexp: '^#export GOPATH '
     line: export PATH=$PATH:/usr/local/go/bin
+
+- name: source .profile
+  shell: source /home/lesha/.profile
 
 - name: Clean folder after go downloads
   file:
