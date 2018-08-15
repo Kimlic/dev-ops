@@ -85,6 +85,18 @@
     read_priv: .*
     write_priv: .*
     state: present
+
+- name: add rabbitmq users kimlic
+  rabbitmq_user:
+    user: kimlic
+    password: v2re3X7tMP
+    vhost: /
+    tags: administrator
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+
   
 # If it's not necessary use rabbitmq_exporter uncoment 
 # - name: remove default guest user
