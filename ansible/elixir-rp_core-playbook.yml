@@ -7,5 +7,5 @@
     - create_users
     - syslog
     - node_exporter
-    - elixir
+    - elixir-rp_core
     - nginx-ssl-elixir-proxy
