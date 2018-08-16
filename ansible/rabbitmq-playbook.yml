@@ -1,0 +1,12 @@
+---
+- name: install
+  hosts: instances
+
+  roles:
+    - base_setup
+    - create_users
+    - syslog
+    - rabbit-mq 
+    - node_exporter
+    - rabbitmq_exporter
+  

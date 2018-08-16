@@ -43,7 +43,9 @@ export MOBILE_KEY_BASE=TaRwP6iMHBxzDxN3A3nhQ649q86wLxR2tw4oKOTpJpIDdKNbmnDcg4WvQ
 export MOBILE_HOST=localhost
 export MOBILE_PORT=4000
 export MOBILE_STATIC_HOST=localhost
-export QUORUM_URL=http://51.144.109.43:22000
+export QUORUM_URL=http://51.141.120.215:22000
+export RELAYING_CALLBACK_URL=demo.kimlic.com
+export FIDO_ENDPOINT=168.63.46.184:8080
 
 #check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

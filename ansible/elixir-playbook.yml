@@ -1,0 +1,11 @@
+---
+- name: install
+  hosts: instances
+
+  roles:
+    - base_setup
+    - create_users
+    - syslog
+    - node_exporter
+    - elixir
+    - nginx-ssl-elixir-proxy

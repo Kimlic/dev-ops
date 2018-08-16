@@ -56,7 +56,7 @@
 
 - name: clone rp_server repo
   git:
-      repo: 'git@bitbucket.org:pharosproduction/rp_server.git'
+      repo: 'git@github.com:Kimlic/rp_server.git'
       dest: /home/ops/rp_server
       key_file: /home/ops/.ssh/ops.id_rsa
       force: yes
@@ -68,11 +68,11 @@
 - name: install rebar
   shell: mix local.rebar --force
 
-- name: compile project
-  shell: cd /home/ops/rp_server/ && MIX_ENV=prod mix do deps.get, deps.compile --force
+# - name: compile project
+#   shell: cd /home/ops/rp_server/ && MIX_ENV=prod mix do deps.get, deps.compile --force
 
-- name: mix release
-  shell: cd /home/ops/rp_server/ &&  MIX_ENV=prod mix release --verbose --env=prod
+# - name: mix release
+#   shell: cd /home/ops/rp_server/ &&  MIX_ENV=prod mix release --verbose --env=prod
 
 # - name: db migration 
 #   shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server migrate
