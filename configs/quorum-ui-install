@@ -1,3 +1,5 @@
+
+vm with nodejs needed
 sudo npm install -g @angular/cli@1.7.4
 lesha@angular-vm:~$ ng -v
 lesha@angular-vm:~$ git clone https://github.com/synechron-finlabs/quorum-maker-ui.git

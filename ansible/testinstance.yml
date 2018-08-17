@@ -8,10 +8,10 @@
     # - nodejs-8
     - syslog
     # - docker
-    - rabbit-mq 
+    # - rabbit-mq 
     - node_exporter
-    - rabbitmq_exporter
-    # - elixir
+    # - rabbitmq_exporter
+    - elixir
     # - nodejs-nginx
     # - java8
     # - maven
