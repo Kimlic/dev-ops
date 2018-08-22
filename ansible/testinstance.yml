@@ -6,12 +6,12 @@
     - base_setup
     - create_users
     # - nodejs-8
-    - syslog
-    # - docker
+    # - syslog
+    - docker
     # - rabbit-mq 
-    - node_exporter
+    # - node_exporter
     # - rabbitmq_exporter
-    - elixir
+    # - elixir
     # - nodejs-nginx
     # - java8
     # - maven

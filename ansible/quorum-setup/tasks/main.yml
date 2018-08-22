@@ -85,7 +85,7 @@
     line: export PATH=$PATH:/usr/local/go/bin
 
 - name: source .profile
-  shell: source /home/lesha/.profile
+  shell: source /home/lesha/.profile | bash
 
 - name: Clean folder after go downloads
   file:
