@@ -130,7 +130,6 @@ function createNode() {
         nodeAccountAddress="0x"${BASH_REMATCH[1]};
     fi
 
-##
     createGenesis
 
     mv ${pName}/datadir/keystore/* ${pName}/${nodeName}/qdata/keystore/${nodeName}key
