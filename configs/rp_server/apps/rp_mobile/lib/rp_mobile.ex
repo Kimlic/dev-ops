@@ -1,2 +1,0 @@
-defmodule RpMobile do
-end

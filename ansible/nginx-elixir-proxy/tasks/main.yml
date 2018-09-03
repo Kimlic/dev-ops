@@ -37,20 +37,12 @@
     state: directory
     mode: 0755
 
-
-- name: add ssl key 
-  copy:
-    src: elixir.aws.pp.ua.key
-    dest: /etc/nginx/ssl/private/elixir.aws.pp.ua.key
-    owner: root
-    group: root
-    mode: 0644
-
 - name: create directory /etc/nginx/ssl/certs
   file:
     path: /etc/nginx/ssl/certs
     state: directory
     mode: 0755
+  
 
 - name: add nginx configs
   copy:

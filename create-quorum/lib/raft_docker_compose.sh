@@ -146,31 +146,31 @@ function createGenesis() {
     echo "NODE ADDRESS: "
     echo $nodeAccountAddress
 
-		if [ $i == 0 ]; then
-			echo "{" >> tempAccountAddress.txt
+  if [ $i == 0 ]; then
+   echo "{" >> tempAccountAddress.txt
             echo ""'"alloc"'": {"  >> tempAccountAddress.txt
-			echo  '"'$nodeAccountAddress'": {' >> tempAccountAddress.txt
-			echo '"balance": "1000000000000000000000000000"' >> tempAccountAddress.txt
-			echo "}," >> tempAccountAddress.txt
+   echo  '"'$nodeAccountAddress'": {' >> tempAccountAddress.txt
+   echo '"balance": "1000000000000000000000000000"' >> tempAccountAddress.txt
+   echo "}," >> tempAccountAddress.txt
 
             if [ $max == 1 ]; then
                 sed '$ s/.$/},/' tempAccountAddress.txt >> accountAddress.txt 
             else
                 cat tempAccountAddress.txt >> accountAddress.txt 
             fi
-		elif [ $i -lt $max ]; then
-			echo  '"'$nodeAccountAddress'": {' >> tempAccountAddress.txt
-			echo '"balance": "1000000000000000000000000000"' >> tempAccountAddress.txt
+  elif [ $i -lt $max ]; then
+   echo  '"'$nodeAccountAddress'": {' >> tempAccountAddress.txt
+   echo '"balance": "1000000000000000000000000000"' >> tempAccountAddress.txt
             echo "}," >> tempAccountAddress.txt
 
-            if [ $i == `expr $max - 1` ]; then
+            if [ $i == expr $max - 1 ]; then
                 sed '$ s/.$/},/' tempAccountAddress.txt >> accountAddress.txt 
             else
                 cat tempAccountAddress.txt >> accountAddress.txt 
             fi
-		fi         
+  fi         
 
-    rm tempAccountAddress.txt
+    # rm tempAccountAddress.txt
 }
 
 function cleanup() {
@@ -178,7 +178,7 @@ function cleanup() {
     rm -rf ${pName}/datadir
     rm -rf ${pName}/keys
     rm -rf ${pName}/setup
-    rm accountAddress.txt
+    #rm accountAddress.txt
 }
 
 function generateEnode() {

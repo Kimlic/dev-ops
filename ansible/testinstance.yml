@@ -6,14 +6,15 @@
     - base_setup
     - create_users
     # - nodejs-8
-    # - syslog
-    - docker
-    # - rabbit-mq 
-    # - node_exporter
-    # - rabbitmq_exporter
+    - syslog
+    # - docker
+    - rabbit-mq 
+    - node_exporter
+    - rabbitmq_exporter
     # - elixir
     # - nodejs-nginx
     # - java8
     # - maven
     # - tomcat9
     # - nginx-ssl-elixir-proxy
+    # - nginx-elixir-proxy
