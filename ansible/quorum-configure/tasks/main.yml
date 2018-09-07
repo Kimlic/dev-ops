@@ -4,4 +4,5 @@
   git:
     repo: https://lesha-pharos@bitbucket.org/pharosproduction/quorum-single-node-config.git
     dest: /home/ops/configs
+    force: yes
     

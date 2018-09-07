@@ -19,7 +19,7 @@
         - wrk=4.0.1-2
         - dnsutils=1:9.10.3.dfsg.P4-8ubuntu1.10
 
-- name: Download constallation
+- name: Download constellation
   get_url:
     #url: https://github.com/jpmorganchase/constellation/releases/download/v0.3.2/constellation-0.3.2-ubuntu1604.tar.xz
     url: https://github.com/jpmorganchase/constellation/releases/download/v0.3.5-build.1/constellation-0.3.5-ubuntu1604.tar.gz
@@ -29,7 +29,7 @@
     group: lesha
     mode: 0755
 
-- name: Unpack constallation
+- name: Unpack constellation
   #shell: tar xvf constellation-0.3.2-ubuntu1604.tar.xz && mv constellation-0.3.2-ubuntu1604 ubuntu1604 && cp ubuntu1604/constellation-node /usr/local/bin
   shell: tar xvf constellation-0.3.5-ubuntu1604.tar.xz && cp constellation-node /usr/local/bin
 
@@ -41,7 +41,7 @@
 #    group: lesha
 #    mode: 0755 
 
-- name: Set permission to constallation
+- name: Set permission to constellation
   file:
     path: /usr/local/bin/constellation-node
     owner: lesha
