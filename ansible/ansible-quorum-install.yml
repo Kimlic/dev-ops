@@ -3,8 +3,8 @@
   hosts: instances
 
   roles:
-    - base_setup
-    - quorum_create_users
-    # - quorum-setup
+    # - base_setup
+    # - quorum_create_users
+    - quorum-setup
     - quorum-configure 
    

@@ -113,17 +113,30 @@
     state: present
     update_cache: yes
   with_items:
-    - software-properties-common=0.96.20.7 
-    - libdb-dev=1:5.3.21~exp1ubuntu2
-    - libleveldb-dev=1.18-5
-    - libsodium-dev=1.0.8-5
-    - zlib1g-dev=1:1.2.8.dfsg-2ubuntu4.1
-    - libtinfo-dev=6.0+20160213-1ubuntu1
-    - netbase=5.3
-    - ca-certificates=20170717~16.04.1 
-    - curl=7.47.0-1ubuntu2.8 
-    - solc=1:0.4.24-0ubuntu1~xenial
-    - dnsutils=1:9.10.3.dfsg.P4-8ubuntu1.10
+    # - software-properties-common=0.96.20.7 
+    # - libdb-dev=1:5.3.21~exp1ubuntu2
+    # - libleveldb-dev=1.18-5
+    # - libsodium-dev=1.0.8-5
+    # - zlib1g-dev=1:1.2.8.dfsg-2ubuntu4.1
+    # - libtinfo-dev=6.0+20160213-1ubuntu1
+    # - netbase=5.3
+    # - ca-certificates=20170717~16.04.1 
+    # - curl=7.47.0-1ubuntu2.8 
+    # - solc=1:0.4.24-0ubuntu1~xenial
+    # - dnsutils=1:9.10.3.dfsg.P4-8ubuntu1.10
+
+    - software-properties-common 
+    - libdb-dev
+    - libleveldb-dev
+    - libsodium-dev
+    - zlib1g-dev
+    - libtinfo-dev
+    - netbase
+    - ca-certificates 
+    - curl 
+    - solc
+    - dnsutils
+
 
 - name: install supervisor
   apt: 

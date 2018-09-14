@@ -76,6 +76,7 @@
 
 # - name: db migration 
 #   shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server migrate
+# MIX_ENV=prod mix ecto.migrate
 
 # - name: seeds
 #   shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server seeds

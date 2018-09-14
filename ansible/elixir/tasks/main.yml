@@ -33,7 +33,7 @@
     update_cache: yes
   with_items:
     - esl-erlang
-    # - elixir
+    - elixir
   
 - name: copy ops keys
   copy:
