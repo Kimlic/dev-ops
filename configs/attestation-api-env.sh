@@ -39,4 +39,4 @@ export REDIS_PASSWORD="seLjCUSJ72naqfwYQvBg1jbORvjtsRKVnAY6RrAUEmA="
 #   627  git branch
 #   628  git fetch
 #   630  MIX_ENV=prod mix do deps.get, deps.compile --force
-#   631  MIX_ENV=prod mix release --verbose --name=attestation_api
+#   631  ho

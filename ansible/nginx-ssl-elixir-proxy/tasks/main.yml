@@ -52,6 +52,28 @@
     state: directory
     mode: 0755
 
+- name: create directory /etc/nginx/ssl/certs
+  file:
+    path: /etc/nginx/ssl/certs
+    state: directory
+    mode: 0755
+
+- name: add ssl pem 
+  copy:
+    src: chained.pem
+    dest: /etc/nginx/ssl/certs/chained.pem
+    owner: root
+    group: root
+    mode: 0644
+
+- name: add ssl dhparam.pem 
+  copy:
+    src: dhparam.pem
+    dest: /etc/nginx/ssl/certs/dhparam.pem
+    owner: root
+    group: root
+    mode: 0644   
+
 - name: add nginx configs
   copy:
     src: nginx-proxy.conf
