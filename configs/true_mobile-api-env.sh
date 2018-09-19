@@ -75,4 +75,4 @@ export REDIS_PASSWORD="NxCFs4gNxvbga51ySs0gQokCBTve1JBXmMoJtIj4Dxo="
 #   628  git fetch
 #   629  history
 #   630  MIX_ENV=prod mix do deps.get, deps.compile --force
-#   631  MIX_ENV=prod mix release --verbose --name=mobile_api
+#  

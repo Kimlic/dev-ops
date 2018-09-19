@@ -5,7 +5,34 @@ ansible_sudo_pass=XxPw4_uF7
 localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
 
 [instances]
+demo.kimlic.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[stage]
+104.211.20.228 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+23.96.96.65 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.76.65.192 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+104.211.19.167 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+104.211.54.97 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+168.62.189.14 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.87.94.79 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.117.78.52 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+23.96.100.231 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+137.117.75.166 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.87.5.227 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.76.75.13 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+168.62.55.56 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+13.68.143.152 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+23.96.41.254 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 40.87.64.171 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[rabbit]
+104.211.54.97 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+168.62.189.14 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[redis]
+104.211.19.167 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+
 
 [quorum-vm]
 51.141.115.175 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"

@@ -1,0 +1,91 @@
+1. Предварительная настройка сервера:
+
+Добавляем на сервер русскую локаль, для начала проверяем её отсутствие/присутствие командой
+
+locale -a | grep ru
+если в ответ ничего нет, то запускаем
+
+dpkg-reconfigure locales
+выбираем в списке локаль ru_RU.UTF-8
+и жмем Yes
+выбираем локаль по умолчанию en_US.UTF-8
+
+2. Начинаем установку PostgreSQL 10:
+
+echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+apt-get update
+apt-get install postgresql-10 -y
+Краткая справка по местоположению основных файлов PostgreSQL 10:
+Местоположение баз данных:
+/var/lib/postgresql/10
+Местоположение логов:
+/var/log/postgresql/postgresql-10-main.log
+Настройка ротации логов:
+/etc/logrotate.d/postgresql-common
+Основные файлы конфигурации:
+/etc/postgresql/10/main/postgresql.conf
+/etc/postgresql/10/main/pg_hba.conf
+
+Первым делом меняем пароль пользователя postgres:
+
+su - postgres
+psql
+postgres=# \password postgres
+postgres=# \q
+3. Тюнинг настроек PostgreSQL:
+
+По умолчанию PostgreSQL принимает соединения только с локальных служб, т.к. слушает интерфейс localhost и это абсолютно правильно с точки зрения безопасности, но если Вы планируете подключения к серверу извне или из локальной сети, то Вам потребуется поменять параметр listen_addresses
+
+Для PostgreSQL 10 открываем основной файл настроек
+
+vi /etc/postgresql/10/main/postgresql.conf
+и раскомментируем строку
+
+listen_addresses = 'localhost'
+listen_addresses = '*'
+
+Давайте настроим эти параметры исходя из
+— объема свободного ОЗУ в 1 ГБ;
+— максимального количества одновременных соединений 10;
+— количество CPU — 1;
+— сервер будет выполнять задачи БД для Web-приложений;
+— база будет располагаться на массиве RAID 1 из 2 дисков SATA HDD;
+
+max_connections = 10
+max_wal_senders = 5
+shared_buffers = 256MB
+maintenance_work_mem = 64MB
+effective_cache_size = 768MB
+work_mem = 13100kB
+min_wal_size = 1GB
+max_wal_size = 2GB
+checkpoint_completion_target = 0.7
+wal_buffers = 8000kB
+effective_io_concurrency = 2
+
+https://pgtune.leopard.in.ua/#/
+
+Теперь разрешим подключение из локальной сети с любых хостов и к любым БД, для этого в конец файла /etc/postgresql/10/main/pg_hba.conf добавим:
+
+# localnet
+host    all         all         192.168.100.0/24          md5
+Далее выходим из под пользователя postgres и рестартуем PostgreSQL:
+
+service postgresql restart
+Проверяем открытые порты
+
+netstat -ltupn |grep postgre
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      563/sshd
+tcp        0      0 0.0.0.0:5432            0.0.0.0:*               LISTEN      9484/postgres
+tcp6       0      0 :::22                   :::*                    LISTEN      563/sshd
+tcp6       0      0 :::5432                 :::*                    LISTEN      9484/postgres
+
+
+DataGrib:
+
+CREATE DATABASE rp_server;
+ CREATE USER kimlic WITH password 'LU6dME4NzQ';
+ALTER USER kimlic WITH SUPERUSER;
+GRANT ALL ON DATABASE rp_server TO kimlic;
