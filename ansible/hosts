@@ -5,7 +5,7 @@ ansible_sudo_pass=XxPw4_uF7
 localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
 
 [instances]
-demo.kimlic.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+137.135.81.131 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [stage]
 104.211.20.228 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
@@ -24,6 +24,8 @@ demo.kimlic.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env pyt
 13.68.143.152 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 23.96.41.254 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 40.87.64.171 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+137.135.81.131 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
 
 [rabbit]
 104.211.54.97 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
@@ -32,6 +34,9 @@ demo.kimlic.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env pyt
 [redis]
 104.211.19.167 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
+[databases]
+stage-postgresql-ap.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+stage-postgresql.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 
 [quorum-vm]

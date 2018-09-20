@@ -1,6 +1,6 @@
 ---
 - name: install
-  hosts: redis
+  hosts: instances
 
   roles:
     - base_setup
@@ -8,10 +8,10 @@
     # - nginx-angular
     # - nodejs-10
     # - quorum_create_users
-    - syslog
+    # - syslog
     # - docker
-    # - rabbit-mq 
-    #  - node_exporter
+    #  - rabbit-mq 
+    - node_exporter
     #  - rabbitmq_exporter
     # - elixir
     # - elixir-rp_core
