@@ -40,7 +40,7 @@
 
 - name: add ssl key 
   copy:
-    src: elixir.aws.pp.ua.key
+    src: kimlic.com.key
     dest: /etc/nginx/ssl/private/kimlic.com.key
     owner: root
     group: root
@@ -60,12 +60,11 @@
 
 - name: add ssl crt 
   copy:
-    src: chained.pem
+    src: kimlic.com.crt
     dest: /etc/nginx/ssl/certs/kimlic.com.crt
     owner: root
     group: root
     mode: 0644
-
 # - name: add ssl dhparam.pem 
 #   copy:
 #     src: dhparam.pem

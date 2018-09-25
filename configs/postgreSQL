@@ -48,31 +48,38 @@ listen_addresses = '*'
 Комментируем строку 
 ssl on
 
-Давайте настроим эти параметры исходя из
-— объема свободного ОЗУ в 1 ГБ;
-— максимального количества одновременных соединений 10;
-— количество CPU — 1;
-— сервер будет выполнять задачи БД для Web-приложений;
-— база будет располагаться на массиве RAID 1 из 2 дисков SATA HDD;
 
-max_connections = 10
-max_wal_senders = 5
-shared_buffers = 256MB
-maintenance_work_mem = 64MB
-effective_cache_size = 768MB
-work_mem = 13100kB
+# DB Version: 10
+# OS Type: linux
+# DB Type: web
+# Total Memory (RAM): 2 GB
+# CPUs num: 1
+# Connections num: 50
+# Data Storage: ssd
+
+max_connections = 50
+shared_buffers = 512MB
+effective_cache_size = 1536MB
+maintenance_work_mem = 128MB
+checkpoint_completion_target = 0.7
+wal_buffers = 16MB
+default_statistics_target = 100
+random_page_cost = 1.1
+effective_io_concurrency = 200
+work_mem = 10485kB
 min_wal_size = 1GB
 max_wal_size = 2GB
-checkpoint_completion_target = 0.7
-wal_buffers = 8000kB
-effective_io_concurrency = 2
 
 https://pgtune.leopard.in.ua/#/
 
 Теперь разрешим подключение из локальной сети с любых хостов и к любым БД, для этого в конец файла /etc/postgresql/10/main/pg_hba.conf добавим:
 
-# localnet
-host    all         all         192.168.100.0/24          md5
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+host	all		all		94.125.120.28/32	md5
+host	all		all		13.68.143.152/32	md5
+host	all		all		40.76.65.192/32		md5
+
 Далее выходим из под пользователя postgres и рестартуем PostgreSQL:
 
 service postgresql restart

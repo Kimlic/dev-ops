@@ -1,0 +1,9 @@
+
+127.0.0.1:6379> exit
+root@stage-redis-vm:/home/lesha# redis-cli
+127.0.0.1:6379> auth 298ac25d80f31148b377be0ae3c298d3185552ea5beaf983678a3fdfbd673d12
+OK
+127.0.0.1:6379> SET ConnectTimeout 30000
+OK
+127.0.0.1:6379> SET KeepAlive 10
+OK
