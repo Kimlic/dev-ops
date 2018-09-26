@@ -3,8 +3,8 @@
   hosts: instances
 
   roles:
-    #  - base_setup
-    #  - create_users
+    # - base_setup
+    # - create_users
     # - nginx-angular
     #  - nodejs-10
     # - quorum_create_users
@@ -15,7 +15,8 @@
     #  - rabbitmq_exporter
     # - postgresql_exporter
     # - elixir
-    #  - elixir-rp_core
+    # - elixir-rp_core
+    - elixir-rp_core_ci
     #  - nodejs-nginx
     # - java8
     # - maven
@@ -24,4 +25,5 @@
     # - nginx-elixir-proxy
     # - install-go
     #  - nginx-kimlic-ssl-elixir-proxy
-    - nginx-kimlic-ssl-angular-proxy
+    # - nginx-kimlic-ssl-angular-proxy
+    # - nginx-kimlic-ssl-react-proxy-dashbord.kimlic.com

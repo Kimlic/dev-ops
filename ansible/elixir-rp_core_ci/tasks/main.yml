@@ -1,0 +1,48 @@
+---
+# tasks file for elixir backend CI
+- name: delete old _build folder
+  file:
+    path: /home/ops/rp_server/_build
+    state: "{{ item }}"
+  with_items:
+    - directory
+    - absent
+
+- name: clone rp_server repo
+  git:
+      repo: 'git@github.com:Kimlic/rp_server.git'
+      dest: /home/ops/rp_server
+      key_file: /home/ops/.ssh/ops.id_rsa
+      force: yes
+      accept_hostkey: yes
+
+- name: install hex
+  shell: cd /home/ops/rp_server/ && mix local.hex --force
+
+- name: install rebar
+  shell: cd /home/ops/rp_server/ && mix local.rebar --force
+
+- name: compile project
+  shell: cd /home/ops/rp_server/ && MIX_ENV=prod mix do deps.get, deps.compile --force
+
+- name: mix release
+  shell: cd /home/ops/rp_server/ &&  MIX_ENV=prod mix release --verbose --env=prod
+
+- name: db migration 
+  shell: cd /home/ops/rp_server/ && MIX_ENV=prod mix ecto.migrate
+
+# - name: seeds
+#   shell: cd /home/ops/rp_server/ && MIX_ENV=prod mix ecto.seed
+
+- name: start rp_server daemon
+  shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server start
+
+- name: change permission on rp_server folder
+  file:
+    path: /home/ops/rp_server
+    owner: ops
+  
+    group: ops
+    mode: 0755
+    recurse: yes 
+

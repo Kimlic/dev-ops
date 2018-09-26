@@ -22,3 +22,5 @@ cd my-app && yarn start &
 sudo apt-get install nginx
 
 sudo systemctl enable nginx
+
+
