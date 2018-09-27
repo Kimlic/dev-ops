@@ -1,5 +1,9 @@
 ---
 # tasks file for elixir backend CI
+
+- name: stop rp_server daemon
+  shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server stop
+
 - name: delete old _build folder
   file:
     path: /home/ops/rp_server/_build

@@ -27,6 +27,15 @@ localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env pyth
 137.135.81.131 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 
+[stage-rp]
+40.121.128.52 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[stage-mobile-api]
+40.121.128.52 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[stage-ap]
+40.121.128.52 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
 [rabbit]
 104.211.54.97 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 168.62.189.14 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
