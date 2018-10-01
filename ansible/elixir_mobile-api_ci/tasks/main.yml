@@ -12,6 +12,20 @@
     - directory
     - absent
 
+- name: delete old deps folder
+  file:
+    path: /home/ops/mobile_api/deps
+    state: "{{ item }}"
+  with_items:
+    - directory
+    - absent
+
+- name: delete old mix.lock
+  file:
+    path: /home/ops/mobile_api/mix.lock
+    state: absent
+  
+
 - name: clone rmobile_api repo
   git:
       repo: "git@github.com:Kimlic/kim-core.git"

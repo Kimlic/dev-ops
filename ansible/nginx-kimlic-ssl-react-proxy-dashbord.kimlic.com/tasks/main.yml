@@ -75,8 +75,8 @@
 
 - name: add nginx configs
   copy:
-    src: nginx-proxy.conf
-    dest: /etc/nginx/conf.d/default.conf
+    src: dashboard.conf
+    dest: /etc/nginx/conf.d/dashboard.conf
     owner: root
     group: root
     mode: 0644

@@ -1,0 +1,24 @@
+---
+- name: install npm
+  hosts: stage-react
+
+  tasks:
+
+  - name: Install packages based on package.json.
+    shell: cd /home/ops/rp-dashboard && npm install
+
+  - name: run build
+    shell: cd /home/ops/rp-dashboard && npm run build
+
+  - name: reload pm2 process
+    shell: pm2 restart npm
+    ignore_errors: yes
+
+        
+  - name: change permission on rp-dashboard folder
+    file:
+      path: /home/ops/rp-dashboard
+      owner: ops
+      group: ops
+      mode: 0755
+      recurse: yes 

@@ -12,6 +12,19 @@
     - directory
     - absent
 
+- name: delete old deps folder
+  file:
+    path: /home/ops/attestation_api/deps
+    state: "{{ item }}"
+  with_items:
+    - directory
+    - absent
+
+- name: delete old mix.lock
+  file:
+    path: /home/ops/attestation_api/mix.lock
+    state: absent
+  
 - name: clone attestation_api repo
   git:
       repo: "git@github.com:Kimlic/kim-core.git"
