@@ -10,11 +10,19 @@
   - name: run build
     shell: cd /home/ops/rp-dashboard && npm run build
 
-  - name: reload pm2 process
-    shell: pm2 restart npm
-    ignore_errors: yes
+  # - name: reload pm2 process
+  #   shell: pm2 restart npm
+  #   ignore_errors: yes
+  
+  # - name: kill nodejs process & restart supervisor
+  #   shell: supervisorctl stop npm && ps aux | grep [n]pm | awk '{print $2}' | xargs kill -15
 
-        
+
+  - name: start npm
+    supervisorctl:
+      name: npm
+      state: restarted
+
   - name: change permission on rp-dashboard folder
     file:
       path: /home/ops/rp-dashboard

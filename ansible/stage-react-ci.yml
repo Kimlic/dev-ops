@@ -3,5 +3,5 @@
   hosts: stage-react
 
   roles:
-    -  react_dashboard_ci
+    -  stage-react_dashboard_ci
    
