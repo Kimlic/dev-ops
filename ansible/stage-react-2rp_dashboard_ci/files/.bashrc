@@ -20,13 +20,6 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 
-export NODE_ENV=production
-export HOST=0.0.0.0
-export PORT=4010
-export API_URI=https://demo.kimlic.com/api
-export PUBLIC_URL=https://demo.kimlic.com
-
-
 #check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize

@@ -69,6 +69,7 @@ effective_io_concurrency = 200
 work_mem = 10485kB
 min_wal_size = 1GB
 max_wal_size = 2GB
+idle_in_transaction_session_timeout = 30000 (msec)
 
 https://pgtune.leopard.in.ua/#/
 
@@ -99,3 +100,113 @@ CREATE DATABASE rp_server;
  CREATE USER kimlic WITH password 'LU6dME4NzQ';
 ALTER USER kimlic WITH SUPERUSER;
 GRANT ALL ON DATABASE rp_server TO kimlic;
+
+
+----------------
+## 1. Configure SO locale
+
+```
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+locale-gen en_US.UTF-8
+dpkg-reconfigure locales
+```
+
+## 2. Install BDR via apt
+
+(Do not install postgresql-9.5! Use postgresql-bdr-9.4 modified version)
+
+```
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+sudo sh -c 'echo "deb [arch=amd64] http://packages.2ndquadrant.com/bdr/apt/ $(lsb_release -cs)-2ndquadrant main" > /etc/apt/sources.list.d/2ndquadrant.list'
+sudo apt-get install wget ca-certificates
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+wget --quiet -O - http://packages.2ndquadrant.com/bdr/apt/AA7A6805.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install postgresql-bdr-9.4 postgresql-bdr-9.4-bdr-plugin
+```
+
+## 3. Create db directory, set PATH and initdb
+
+```
+su -l postgres
+export PATH=/usr/lib/postgresql/9.4/bin:$PATH
+mkdir $HOME/9.4-bdr
+initdb -D $HOME/9.4-bdr -A trust
+```
+
+## 4. Edit `$HOME/9.4-bdr/postgresql.conf`
+
+```
+listen_addresses = '*'
+
+shared_preload_libraries = 'bdr'
+wal_level = 'logical'
+track_commit_timestamp = on
+max_connections = 100
+max_wal_senders = 10
+max_replication_slots = 10
+max_worker_processes = 10
+```
+
+## 5. Edit `$HOME/9.4-bdr/pg_hba.conf`
+
+Master1: 104.236.39.43
+Master2: 45.55.182.128
+
+```
+local   replication     postgres                                trust
+host    replication     postgres        127.0.0.1/32            trust
+host    replication     postgres        ::1/128                 trust
+
+host all all 0.0.0.0/0  password
+
+host replication postgres 104.236.39.43/32 trust
+host replication postgres 45.55.182.128/32 trust
+
+host replication bdrsync 104.236.39.43/32 password
+host replication bdrsync 45.55.182.128/32 password
+```
+
+## 6. Stop old config server, start server and create bdr user
+
+```
+pg_ctl -D $HOME/9.4/main stop
+pg_ctl -D $HOME/9.4-bdr start
+psql -c "CREATE USER bdrsync superuser;"
+psql -c "ALTER USER bdrsync WITH PASSWORD '12345#';"
+```
+
+## 7. Create an unprivileged user and a blank database
+
+```
+createuser amsv2
+createdb -O amsv2 amstest
+psql amstest -c 'CREATE EXTENSION btree_gist;'
+psql amstest -c 'CREATE EXTENSION bdr;'
+```
+
+## 8. Create group on Master1
+
+```
+psql
+\c amstest
+SELECT bdr.bdr_group_create(
+    local_node_name := 'node1',
+    node_external_dsn := 'host=104.236.39.43 user=bdrsync dbname=amstest password=12345#'
+);
+```
+
+## 9. Join group from Master2
+
+```
+psql
+\c amstest
+SELECT bdr.bdr_group_join(
+    local_node_name := 'node2',
+    node_external_dsn := 'host=45.55.182.128 user=bdrsync dbname=amstest password=12345#',
+    join_using_dsn := 'host=104.236.39.43 user=bdrsync dbname=amstest password=12345#'
+);
+```

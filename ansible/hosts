@@ -5,7 +5,7 @@ ansible_sudo_pass=XxPw4_uF7
 localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
 
 [instances]
-40.121.128.52 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.114.90.246 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [stage]
 104.211.20.228 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
