@@ -5,7 +5,7 @@ ansible_sudo_pass=XxPw4_uF7
 localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
 
 [instances]
-40.114.90.246 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+168.62.55.56 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [stage]
 104.211.20.228 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
@@ -42,6 +42,9 @@ localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env pyth
 [stage-react]
 137.117.74.27 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
+[stage-react-2rp]
+168.61.34.109 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
 [rabbit]
 104.211.54.97 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 168.62.189.14 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
@@ -62,3 +65,4 @@ stage-postgresql-rp1.eastus.cloudapp.azure.com ansible_user=lesha  ansible_pytho
 
 [grafana]
 65.52.64.120 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+

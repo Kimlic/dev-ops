@@ -8,7 +8,7 @@
     shell: cd /home/ops/rp-dashboard && npm install
 
   - name: run build
-    shell: cd /home/ops/rp-dashboard && npm run build
+    shell: cd /home/ops/rp-dashboard && npm run build:demo-rp2-kimlic-com
 
   # - name: reload pm2 process
   #   shell: pm2 restart npm
