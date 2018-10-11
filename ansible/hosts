@@ -5,7 +5,7 @@ ansible_sudo_pass=XxPw4_uF7
 localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
 
 [instances]
-168.62.55.56 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+52.138.163.26 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [stage]
 104.211.20.228 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
@@ -26,6 +26,17 @@ localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env pyth
 40.87.64.171 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 137.135.81.131 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
+[test]
+aglaja.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+varvara.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+glikerija.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+dorofeja.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+kassandra.northeurope.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+larisa.northeurope.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+elpida.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+ismena.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+nika.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+olimpija.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [stage-rp]
 40.121.128.52 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
@@ -59,6 +70,9 @@ stage-postgresql-rp1.eastus.cloudapp.azure.com ansible_user=lesha  ansible_pytho
 
 [react]
 40.117.188.60 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[dbserver]
+13.69.131.124 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [quorum-vm]
 51.141.115.175 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
