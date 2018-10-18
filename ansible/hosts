@@ -5,7 +5,11 @@ ansible_sudo_pass=XxPw4_uF7
 localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env python"
 
 [instances]
-52.138.163.26 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+jfrog.northeurope.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[quorum]
+elena.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
 
 [stage]
 104.211.20.228 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
@@ -37,6 +41,10 @@ elpida.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter=
 ismena.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 nika.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 olimpija.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[elixir-cluster]
+sirena.northeurope.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+mojra.northeurope.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [stage-rp]
 40.121.128.52 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
@@ -79,4 +87,45 @@ stage-postgresql-rp1.eastus.cloudapp.azure.com ansible_user=lesha  ansible_pytho
 
 [grafana]
 65.52.64.120 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
+[update-ssh]
+13.82.131.73 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+23.96.9.152 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.121.43.165 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+137.117.55.46 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+137.135.66.43 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.114.90.246 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.121.36.151 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.114.86.208 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.117.255.71 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.87.64.171 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+23.96.41.254 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+13.68.143.152 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+168.62.55.56 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.76.75.13 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3" 
+137.135.81.131 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+137.116.113.143 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.87.5.227 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.121.145.171 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.117.78.52 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+23.96.100.231 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+168.62.189.14 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3" 
+104.211.54.97 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+168.61.34.109 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+137.117.74.27 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+104.211.19.167 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.76.65.192 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+23.96.96.65 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+104.211.20.228 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.76.192.236 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+13.82.134.124 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+13.79.0.243 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+23.101.57.117 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+13.69.131.124 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+23.101.63.234 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+168.63.65.139 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.113.76.67 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+65.52.64.120 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3" 
+40.115.118.108 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+40.112.93.52 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 

@@ -1,6 +1,7 @@
 ---
 - name: install
-  hosts: test
+#   hosts: instances
+  hosts: elixir-cluster
 
   roles:
     # - base_setup
@@ -11,19 +12,20 @@
     #  - syslog
     # - docker
     #  - rabbit-mq 
-    - node_exporter
+    # - node_exporter
     #  - rabbitmq_exporter
     # - postgresql_exporter
     # - elixir
     # - elixir-rp_core
     # - elixir-rp_core_ci
     #  - nodejs-nginx
-    #  - java8
+    # - java8
     # - maven
     # - tomcat9
-    # - nginx-ssl-elixir-proxy
-    #  - nginx-elixir-proxy
+    - nginx-ssl-elixir-proxy
+    # - nginx-elixir-proxy
     # - install-go
     # - nginx-kimlic-ssl-elixir-proxy
     # - nginx-kimlic-ssl-angular-proxy
     # - nginx-kimlic-ssl-react-proxy-dashbord.kimlic.com
+    # - postgresql

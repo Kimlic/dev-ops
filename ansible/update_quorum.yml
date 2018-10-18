@@ -1,0 +1,6 @@
+---
+- name: update
+  hosts: quorum
+
+  roles:
+    - quorum-update
