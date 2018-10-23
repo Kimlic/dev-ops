@@ -1,0 +1,10 @@
+---
+- name: update ssh
+  hosts: instances
+  tasks:
+
+    - name: Base setup
+      apt: 
+        name: ssh
+        state: latest
+        update_cache: yes

@@ -1,0 +1,66 @@
+---
+# tasks file for elixir backend CI
+ 
+- name: stop mobile-api daemon
+  shell: sh /home/ops/kim-core/_build/prod/rel/mobile_api/bin/mobile_api stop
+
+- name: delete old _build folder
+  file:
+    path: /home/ops/mobile_api/_build
+    state: "{{ item }}"
+  with_items:
+    - directory
+    - absent
+
+- name: delete old deps folder
+  file:
+    path: /home/ops/mobile_api/deps
+    state: "{{ item }}"
+  with_items:
+    - directory
+    - absent
+
+- name: delete old mix.lock
+  file:
+    path: /home/ops/mobile_api/mix.lock
+    state: absent
+  
+
+- name: clone rmobile_api repo
+  git:
+      repo: "git@github.com:Kimlic/kim-core.git"
+      dest: /home/ops/kim-core
+      key_file: /home/ops/.ssh/ops.id_rsa
+      force: yes
+      accept_hostkey: yes
+
+- name: install hex
+  shell: cd /home/ops/kim-core/ && mix local.hex --force
+
+- name: install rebar
+  shell: cd /home/ops/kim-core/ && mix local.rebar --force
+
+- name: compile project
+  shell: cd /home/ops/kim-core/ && MIX_ENV=prod mix do deps.get, deps.compile --force
+
+- name: mix release
+  shell: cd /home/ops/kim-core &&   MIX_ENV=prod mix release --verbose --name=mobile_api
+
+# - name: db migration 
+#   shell: cd /home/ops/kim-core/ && MIX_ENV=prod mix ecto.migrate
+
+# - name: seeds
+#   shell: cd /home/ops/kim-core/ && MIX_ENV=prod mix ecto.seed
+
+- name: start mobile_api daemon
+  shell: sh /home/ops/kim-core/_build/prod/rel/mobile_api/bin/mobile_api start
+
+- name: change permission on kim-core folder
+  file:
+    path: /home/ops/kim-core
+    owner: ops
+  
+    group: ops
+    mode: 0755
+    recurse: yes 
+

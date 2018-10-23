@@ -1,0 +1,22 @@
+---
+# tasks file for quorum update
+
+- name: stop quorum 
+  shell: killall geth constellation-node
+
+- name: Copy quorum files
+  copy:
+    src: "{{ item }}"
+    dest: /usr/local/bin
+    owner: lesha
+    group: lesha
+    mode: u=rwx,g=rwx,o=rx
+  with_items:
+    - geth
+    - bootnode
+
+- name: install supervisor
+  apt: 
+    name: supervisor
+    state: latest
+    

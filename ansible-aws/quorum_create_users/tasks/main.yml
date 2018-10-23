@@ -1,0 +1,59 @@
+---
+# tasks file for add_users
+  - name: add user admin
+    user:
+      name: admin
+      # 123
+      password: '$6$9DAOVRDeKdX/Rf0x$tPksriDXb4yyTMFBVQoa/wIcGHI0xIlpDwBjWlnuczEvH5mK/Xq6C6Ou7FZiPDa8Id0u0Sq9rj5kr5Vg0DO8Q1'
+      shell: /bin/bash
+
+  - name: Set authorized key took from file
+    authorized_key:
+      user: admin
+      state: present
+      key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDnY40Qytw0d3dOk438k3yNiKaIRir42MRERY7ab+/XwIVqd39FqzZu6kMi4QED+D57X7wYE+a7xm81rLNFKjGEibXLZq+qjHuMRl/ySQOF3a7h9e7V4HuYIxooV/p2CDE8lART+6LkVwG6cEvwc4+bNx/61KZwTqHQh15SozWFNV9XgTMmx8KYLH8YaKUyMzts5tRWVccUJ4+3CKyk7xtA57o0Js0g1fVU8jgMubEiQmFq6vEOyK+etp9JmDosvahz3Xewwn5FR5fIGrdVtjc9fHFrw1blzwaCq1zxsqRILkQCoYGtbLo2/gkDa07seGsM9mUJJStbcG3u3bZxfH55 lesha@lesha-acer'
+
+  - name: add user
+    user:
+      name: ops
+      # 123
+      password: '$6$9DAOVRDeKdX/Rf0x$tPksriDXb4yyTMFBVQoa/wIcGHI0xIlpDwBjWlnuczEvH5mK/Xq6C6Ou7FZiPDa8Id0u0Sq9rj5kr5Vg0DO8Q1'
+      shell: /bin/bash
+
+  - name: Set authorized key took from file
+    authorized_key:
+      user: ops
+      state: present
+      key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDnY40Qytw0d3dOk438k3yNiKaIRir42MRERY7ab+/XwIVqd39FqzZu6kMi4QED+D57X7wYE+a7xm81rLNFKjGEibXLZq+qjHuMRl/ySQOF3a7h9e7V4HuYIxooV/p2CDE8lART+6LkVwG6cEvwc4+bNx/61KZwTqHQh15SozWFNV9XgTMmx8KYLH8YaKUyMzts5tRWVccUJ4+3CKyk7xtA57o0Js0g1fVU8jgMubEiQmFq6vEOyK+etp9JmDosvahz3Xewwn5FR5fIGrdVtjc9fHFrw1blzwaCq1zxsqRILkQCoYGtbLo2/gkDa07seGsM9mUJJStbcG3u3bZxfH55 lesha@lesha-acer'
+  
+  - name: copy ops auth keys
+    copy:
+      src: "{{ item }}"
+      dest: /home/ops/.ssh/
+      owner: ops
+      group: ops
+      mode: u=rw,g=r,o=r
+    with_items:
+    - ops.id_rsa
+    - ops.id_rsa.pub
+  
+  
+  - name: is sudo present
+    stat: 
+      path: /etc/sudoers
+    register: sudoers
+    become: false
+
+  - name: include sudoers.d
+    lineinfile:
+      dest: /etc/sudoers
+      regexp: '^#includedir '
+      line: '#includedir /etc/sudoers.d'
+      validate: visudo -cf %s
+
+  - name: setup sudo
+    template:
+      src: 95-ansible-users.j2
+      dest: /etc/sudoers.d/95-ansible-users
+      mode: 0440
+      validate: visudo -cf %s

@@ -1,0 +1,44 @@
+---
+# tasks file for elixir backend setup
+
+- name: Install nessesary package
+  apt: 
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+  with_items:
+    - apt-transport-https
+    - postgresql-client
+    - inotify-tools
+    - make
+    - build-essential
+
+- name: Download erlang solutions
+  get_url:
+    url: https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+    dest: /home/lesha/erlang-solutions_1.0_all.deb
+    owner: lesha
+    group: lesha
+    mode: 0755
+
+- name: Install erlang repository
+  apt:
+    deb: /home/lesha/erlang-solutions_1.0_all.deb
+   
+
+- name: Install erlang and elixir
+  apt: 
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - esl-erlang
+    - elixir
+  
+- name: copy ops keys
+  copy:
+    src: ops.id_rsa
+    dest: /home/ops/.ssh/ops.id_rsa
+    owner: ops
+    group: ops
+    mode: 0600

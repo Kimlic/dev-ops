@@ -1,0 +1,32 @@
+# tasks file for node_exporter setup
+- name: create user for node_exporter
+  user:
+    name: node_exporter
+    shell: /bin/false
+    create_home: no
+
+- name: Copy node_exporter file
+  copy:
+    src: node_exporter
+    dest: /usr/local/bin
+    owner: node_exporter
+    group: node_exporter
+    mode: u=rwx,g=rx,o=x
+
+- name: Create node_exporter service
+  copy:
+    src: node_exporter.service
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: enable and start node_explorer
+  systemd:
+    name: node_exporter
+    enabled: yes
+    state: started

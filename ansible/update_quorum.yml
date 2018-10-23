@@ -1,6 +1,6 @@
 ---
 - name: update
-  hosts: quorum
+  hosts: instances
 
   roles:
     - quorum-update

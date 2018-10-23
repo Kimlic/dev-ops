@@ -1,0 +1,32 @@
+---
+- name: install npm
+  hosts: stage-react
+
+  tasks:
+
+  - name: Install packages based on package.json.
+    shell: cd /home/ops/rp-dashboard && npm install
+
+  - name: run build
+    shell: cd /home/ops/rp-dashboard && npm run build:demo-rp2-kimlic-com
+
+  # - name: reload pm2 process
+  #   shell: pm2 restart npm
+  #   ignore_errors: yes
+  
+  # - name: kill nodejs process & restart supervisor
+  #   shell: supervisorctl stop npm && ps aux | grep [n]pm | awk '{print $2}' | xargs kill -15
+
+
+  - name: start npm
+    supervisorctl:
+      name: npm
+      state: stopped
+
+  - name: change permission on rp-dashboard folder
+    file:
+      path: /home/ops/rp-dashboard
+      owner: ops
+      group: ops
+      mode: 0755
+      recurse: yes 

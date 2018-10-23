@@ -1,0 +1,7 @@
+---
+# vars file for add_users
+   users: 
+      - name: admin
+        sudo: ALL=(ALL) ALL
+      - name: ops
+        sudo: ALL=(ALL) ALL

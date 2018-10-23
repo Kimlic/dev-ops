@@ -1,0 +1,10 @@
+---
+- name: Quorum install
+  hosts: instances
+
+  roles:
+    - base_setup
+    - quorum_create_users
+    - quorum-setup
+    - quorum-configure 
+   

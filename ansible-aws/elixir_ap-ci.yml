@@ -1,0 +1,7 @@
+---
+- name: install
+  hosts: stage-ap
+
+  roles:
+    - elixir_ap_ci
+   

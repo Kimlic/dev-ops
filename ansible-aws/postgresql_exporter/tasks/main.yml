@@ -1,0 +1,33 @@
+# tasks file for postgres-exporter setup
+
+- name: create user for postgres-exporter
+  user:
+    name: node_exporter
+    shell: /bin/false
+    create_home: no
+
+- name: Copy postgres-exporter file
+  copy:
+    src: postgres_exporter
+    dest: /usr/local/bin
+    owner: node_exporter
+    group: node_exporter
+    mode: u=rwx,g=rx,o=x
+
+- name: Create postgres-exporter service
+  copy:
+    src: postgres_exporter.service
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: enable and start postgres_exporter
+  systemd:
+    name: postgres_exporter
+    enabled: yes
+    state: started
