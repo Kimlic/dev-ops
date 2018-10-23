@@ -8,7 +8,7 @@ localhost ansible_connection=local ansible_python_interpreter="/usr/bin/env pyth
 jfrog.northeurope.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [quorum]
-elena.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+first-blockchain-kimcore-stage.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 
 [stage]
@@ -83,7 +83,7 @@ stage-postgresql-rp1.eastus.cloudapp.azure.com ansible_user=lesha  ansible_pytho
 13.69.131.124 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [quorum-vm]
-51.141.115.175 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+first-blockchain-mars-stage.eastus.cloudapp.azure.com ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
 [grafana]
 65.52.64.120 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"

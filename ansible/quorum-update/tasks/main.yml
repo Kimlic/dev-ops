@@ -1,6 +1,9 @@
 ---
 # tasks file for quorum update
 
+- name: stop quorum 
+  shell: killall geth constellation-node
+
 - name: Copy quorum files
   copy:
     src: "{{ item }}"
@@ -15,5 +18,5 @@
 - name: install supervisor
   apt: 
     name: supervisor
-    state: present
-    update_cache: yes
+    state: latest
+    
