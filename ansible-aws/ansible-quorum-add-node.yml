@@ -1,6 +1,6 @@
 ---
 - name: Quorum add node
-  hosts: instances
+  hosts: quorum-vm2
 
   roles:
     - base_setup

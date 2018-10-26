@@ -1,7 +1,7 @@
 ---
 - name: install
 #   hosts: instances
-  hosts: instances
+  hosts: elixir-vm1
 
   roles:
     - base_setup
@@ -12,10 +12,10 @@
     #  - syslog
     # - docker
     #  - rabbit-mq 
-    # - node_exporter
+    - node_exporter
     #  - rabbitmq_exporter
     # - postgresql_exporter
-    # - elixir
+    - elixir
     # - elixir-rp_core
     # - elixir-rp_core_ci
     #  - nodejs-nginx
@@ -23,7 +23,7 @@
     # - maven
     # - tomcat9
     # - nginx-ssl-elixir-proxy
-    # - nginx-elixir-proxy
+    - nginx-elixir-proxy
     # - install-go
     # - nginx-kimlic-ssl-elixir-proxy
     # - nginx-kimlic-ssl-angular-proxy
