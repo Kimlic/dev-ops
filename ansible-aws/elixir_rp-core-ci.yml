@@ -1,7 +1,0 @@
----
-- name: install
-  hosts: stage-rp
-
-  roles:
-    - elixir-rp_core_ci
-   

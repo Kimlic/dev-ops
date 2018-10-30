@@ -1,7 +1,0 @@
----
-- name: install
-  hosts: stage-mobile-api
-
-  roles:
-    - elixir_mobile-api_ci
-   

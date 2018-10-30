@@ -1,6 +1,0 @@
----
-- name: update
-  hosts: quorum-vm
-
-  roles:
-    - quorum-update

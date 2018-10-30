@@ -1,7 +1,0 @@
----
-- name: install
-  hosts: stage-react-2rp
-
-  roles:
-    -  stage-react-2rp_dashboard_ci
-   

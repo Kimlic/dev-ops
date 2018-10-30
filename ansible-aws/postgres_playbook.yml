@@ -1,8 +1,0 @@
----
-- name: Create a PostgreSQL DB server
-  hosts: dbserver
- 
-  roles:
-  - base_setup
-  - create_users
-  - postgresql

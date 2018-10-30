@@ -1,7 +1,0 @@
-# tasks file for maven setup
-- name: Install nessesary packeges
-
-  apt: 
-      name: maven
-      state: present
-      update_cache: yes

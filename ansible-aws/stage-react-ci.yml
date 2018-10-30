@@ -1,7 +1,0 @@
----
-- name: install
-  hosts: stage-react
-
-  roles:
-    -  stage-react_dashboard_ci
-   
