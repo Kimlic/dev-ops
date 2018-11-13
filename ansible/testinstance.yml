@@ -19,8 +19,8 @@
     # - elixir-rp_core
     # - elixir-rp_core_ci
     #  - nodejs-nginx
-    # - java8
-    # - maven
+    - java8
+    - maven
     # - tomcat9
     # - nginx-ssl-elixir-proxy
     # - nginx-elixir-proxy
