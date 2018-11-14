@@ -1,0 +1,34 @@
+[Unit]
+Description=kimcore
+After=network.target
+Requires=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ops/kimcore
+User=ops
+Group=ops
+Restart=on-failure
+RestartSec=5
+ExecStart=/bin/sh  '/home/ops/kimcore/_build/prod/rel/mobile_api/bin/mobile_api start'
+ExecStop=/bin/sh  '/home/ops/kimcore/_build/prod/rel/mobile_api/bin/mobile_api stop'
+
+[Install]
+WantedBy=multi-user.target
+
+
+[Unit]
+Description=kimcore
+
+[Service]
+PIDFile=/tmp/app.pid-0000
+User=ops
+Group=ops
+WorkingDirectory=/home/ops/kim-core
+
+Restart=on-failure
+Environment=MIX_ENV=prod "PORT=4000"
+ExecStart=/home/ops/kim-core/_build/prod/rel/mobile_api/bin/mobile_api start
+
+[Install]
+WantedBy=multi-user.target
