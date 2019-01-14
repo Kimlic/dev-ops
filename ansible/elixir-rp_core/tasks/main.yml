@@ -81,8 +81,8 @@
 # - name: seeds
 #   shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server seeds
 
-# - name: start rp_server daemon
-#   shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server start
+- name: start rp_server daemon
+  shell: sh /home/ops/rp_server/_build/prod/rel/rp_server/bin/rp_server start
 
 - name: change permission on rp_server folder
   file:

@@ -2,7 +2,7 @@
 # tasks file for elixir backend CI
 
 - name: stop rp_server daemon
-  shell: sh /home/ops/rp-server/_build/prod/rel/rp_server/bin stop
+  shell: HOSTNAME=127.0.0.1 REPLACE_OS_VARS=true sh /home/ops/rp-server/_build/prod/rel/rp_server/bin stop
 
 - name: delete old _build folder
   file:
@@ -20,7 +20,7 @@
     - directory
     - absent
 
-- name: delete old mix.lock
+- name: delete old mix.lockg
   file:
     path: /home/ops/rp-server/mix.lock
     state: absent
@@ -52,7 +52,7 @@
 #   shell: cd /home/ops/rp-server/ && MIX_ENV=prod mix ecto.seed
 
 - name: start rp_server daemon
-  shell: sh /home/ops/rp-server/_build/prod/rel/rp_server/bin start
+  shell: HOSTNAME=127.0.0.1 REPLACE_OS_VARS=true sh /home/ops/rp-server/_build/prod/rel/rp_server/bin start
 
 - name: change permission on rp_server folder
   file:

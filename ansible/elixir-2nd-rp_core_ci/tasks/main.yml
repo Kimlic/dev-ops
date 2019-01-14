@@ -2,7 +2,7 @@
 # tasks file for elixir backend CI
 
 - name: stop rp_server daemon
-  shell: sh /home/ops/rp-server/_build/stage/rel/rp_server/bin/rp_server stop
+  shell: HOSTNAME=127.0.0.1 REPLACE_OS_VARS=true sh /home/ops/rp-server/_build/stage/rel/rp_server/bin/rp_server stop
 
 - name: delete old _build folder
   file:
@@ -52,7 +52,7 @@
 #   shell: cd /home/ops/rp-server/ && MIX_ENV=stage mix ecto.seed
 
 - name: start rp_server daemon
-  shell: sh /home/ops/rp-server/_build/stage/rel/rp_server/bin/rp_server start
+  shell: HOSTNAME=127.0.0.1 REPLACE_OS_VARS=true sh /home/ops/rp-server/_build/stage/rel/rp_server/bin/rp_server start
 
 - name: change permission on rp_server folder
   file:
