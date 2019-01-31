@@ -1,0 +1,7 @@
+---
+- name: install
+  hosts: dev-dashboard
+
+  roles:
+    -  dev-dashboard_ci
+   

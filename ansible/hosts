@@ -64,6 +64,9 @@ mojra.northeurope.cloudapp.azure.com ansible_user=lesha  ansible_python_interpre
 [stage-react-2rp]
 168.61.34.109 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 
+[dev-dashboard]
+40.80.150.76 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
+
 [rabbit]
 104.211.54.97 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
 168.62.189.14 ansible_user=lesha  ansible_python_interpreter="/usr/bin/env python3"
