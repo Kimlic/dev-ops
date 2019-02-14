@@ -1,0 +1,26 @@
+##### ENV for elixir
+export ATTESTATION_ENDPOINT=https://ap-api-test.kimlic.com/api
+export RELAYING_QUORUM_ADDRESS=0x85725cd64753040abc6a065d7a833854a4adbc22
+export DB=rp_server
+export DB_USERNAME=kimlic@pharos
+export DB_PASSWORD=2LDa2RXAKQ
+export DB_HOSTNAME=pharos.postgres.database.azure.com
+export DB_PORT=5432
+export DB_POOL=10
+export AZURE_CONTAINER=rp-blob
+export AZURE_CDN_URL=https://blobpharos.blob.core.windows.net
+export AZURE_ACCOUNT=blobpharos
+export AZURE_KEY=nlXVNa5YkfiYa9UdqMPRb4WdfjqfB5u4KWh0mWLoPxAkxMlSxxUDyqrG3mGrUcQHdTUboG8JTUjGL0BJwwvdDA==
+export RABBIT_CONNECT_OPTIONS=amqp://kimlic:v2re3X7tMP@168.63.42.19:5672?heartbeat=30
+export FRONT_KEY_BASE=TaRwP6iMHBxzDxN3A3nhQ649q86wLxR2tw4oKOTpJpIDdKNbmnDcg4WvQCcC79yY
+export FRONT_HOST=localhost
+export FRONT_PORT=4001
+export FRONT_STATIC_HOST=localhost
+export KIM_CORE_ENDPOINT=https://mobile-api-test.kimlic.com/api
+export MOBILE_KEY_BASE=TaRwP6iMHBxzDxN3A3nhQ649q86wLxR2tw4oKOTpJpIDdKNbmnDcg4WvQCcC79yY
+export MOBILE_HOST=localhost
+export MOBILE_PORT=4000
+export MOBILE_STATIC_HOST=localhost
+export QUORUM_URL=http://51.141.120.215:22000
+export RELAYING_CALLBACK_URL=demo.kimlic.com
+export FIDO_ENDPOINT=168.63.46.184:8080
